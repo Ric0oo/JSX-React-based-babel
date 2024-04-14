@@ -3,6 +3,7 @@ class Form extends React.Component {
     city: "London",
     text: "",
     isLiked: true,
+    number: "0",
   };
 
   handleCityChange = (event) => {
@@ -20,6 +21,11 @@ class Form extends React.Component {
       isLiked: event.target.checked,
     });
   };
+  handleNumberChange(event) {
+    this.setState({
+      number: event.target.value,
+    });
+  }
 
   render() {
     return (
@@ -49,6 +55,19 @@ class Form extends React.Component {
           />
         </label>
         <br />
+        <label>
+          Ile razy byliście w tym mieście ?
+          <select
+            value={this.state.number}
+            onChange={this.handleNumberChange.bind(this)}
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="more">więcej</option>
+          </select>
+        </label>
       </div>
     );
   }
