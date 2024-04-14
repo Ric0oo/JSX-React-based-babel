@@ -56,7 +56,7 @@ class ListItems extends React.Component {
       case "female":
         users = users.filter((user) => user.gender === "female");
         return users.map((user) => <Item key={user.id} user={user} />);
-      case "female":
+      case "male":
         users = users.filter((user) => user.gender === "male");
         return users.map((user) => <Item key={user.id} user={user} />);
       default:
