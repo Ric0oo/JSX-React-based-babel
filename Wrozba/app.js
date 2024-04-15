@@ -78,6 +78,7 @@ class App extends React.Component {
         <input
           input={this.setState.omen}
           onChange={this.handleInputChange}
+          value={this.state.input}
         ></input>
         <button onClick={this.handleUserAdd}>Dodaj Wróżbę</button>
         <br />
