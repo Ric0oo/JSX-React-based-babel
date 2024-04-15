@@ -61,18 +61,30 @@ class App extends React.Component {
     this.setState({ currentOmen: randomOmen });
   };
 
+  handleUserAdd = () => {
+    const newOmen = { text: this.state.input };
+    this.setState({ omen: [...this.state.omen, newOmen] });
+  };
+
+  handleInputChange = (event) => {
+    this.setState({ input: event.target.value });
+  };
+
   render() {
     return (
       <div>
         <button onClick={this.handleUserSee}>Zobacz wróżbę</button>
         <br />
-        <input></input>
-        <button>Dodaj Wróżbę</button>
+        <input
+          input={this.setState.omen}
+          onChange={this.handleInputChange}
+        ></input>
+        <button onClick={this.handleUserAdd}>Dodaj Wróżbę</button>
         <br />
         {this.state.currentOmen && (
-          <p>
+          <h1>
             <strong>{this.state.currentOmen.text}</strong>
-          </p>
+          </h1>
         )}
       </div>
     );
