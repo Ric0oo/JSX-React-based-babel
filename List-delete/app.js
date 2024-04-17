@@ -2,7 +2,7 @@ const Person = (props) => {
   return (
     <li>
       <span>{props.name}</span>
-      <button onClick={props.delete}>Usuń</button>
+      <button onClick={() => props.delete(props.name)}>Usuń</button>
     </li>
   );
 };
@@ -12,48 +12,39 @@ class List extends React.Component {
     people: [
       {
         id: 1,
-        name: "Marta",
+        name: "Marta W.",
       },
       {
         id: 2,
-        name: "Stasia",
+        name: "Stasia P.",
       },
       {
         id: 3,
-        name: "Karol",
+        name: "Karol B.",
       },
       {
         id: 4,
-        name: "Arek",
+        name: "Arek T.",
       },
       {
         id: 5,
-        name: "Agata",
+        name: "Anna S.",
       },
     ],
   };
 
-  handleDelete = (id) => {
-    const people = [...this.state.people];
-    const index = people.findIndex((person) => person.id === id);
-    people.splice(index, 1);
+  handleDelete = (name) => {
+    let people = this.state.people.slice();
+    people = people.filter((person) => name !== person.name);
     this.setState({ people });
   };
 
   render() {
     const people = this.state.people.map((person) => (
-      <Person
-        key={person.id}
-        name={person.name}
-        delete={this.handleDelete.bind(this, person.id)}
-      />
+      <Person key={person.id} name={person.name} delete={this.handleDelete} />
     ));
 
-    return (
-      <div>
-        <ul>{people}</ul>
-      </div>
-    );
+    return <ul>{people}</ul>;
   }
 }
 
