@@ -11,17 +11,12 @@ class Clicker extends React.Component {
   };
 
   handleClick2 = () => {
-    this.setState(() => ({
-      number2: this.state.number2 + 5,
-    }));
-    this.setState(() => ({
-      number2: this.state.number2 + 5,
-    }));
-    this.setState(() => ({
-      number2: this.state.number2 + 5,
-    }));
+    this.setState((state) => {
+      return {
+        number2: state.number2 + 5,
+      };
+    });
   };
-
   render() {
     return (
       <div>
@@ -33,5 +28,4 @@ class Clicker extends React.Component {
     );
   }
 }
-
 ReactDOM.render(<Clicker />, document.getElementById("root"));
