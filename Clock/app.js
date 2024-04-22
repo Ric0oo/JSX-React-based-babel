@@ -1,0 +1,65 @@
+class App extends React.Component {
+  state = {
+    active: true,
+  };
+
+  handleClick = () => {
+    this.setState((state) => ({
+      active: !state.active,
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        {this.state.active && <Clock />}
+        <SwitchButton active={this.state.active} click={this.handleClick} />
+      </div>
+    );
+  }
+}
+
+const SwitchButton = (props) => (
+  <button style={{ fontSize: "30px" }} onClick={props.click}>
+    {props.active ? "Wyłącz" : "Włącz"}
+  </button>
+);
+class Clock extends React.Component {
+  interval = "";
+
+  state = {
+    time: this.getTime(),
+  };
+
+  getTime() {
+    const currentTime = new Date();
+    return {
+      hours: currentTime.getHours(),
+      minutes: currentTime.getMinutes(),
+      seconds: currentTime.getSeconds(),
+    };
+  }
+
+  setTime = () => {
+    const time = this.getTime();
+    this.setState({ time });
+  };
+
+  componentDidMount() {
+    this.interval = setInterval(this.setTime, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    const { hours, minutes, seconds } = this.state.time;
+    return (
+      <div style={{ fontSize: "90px" }}>
+        {hours} : {minutes} : {seconds}
+      </div>
+    );
+  }
+}
+ReactDOM.render(<App />, document.getElementById("root"));
