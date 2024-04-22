@@ -11,11 +11,11 @@ class Counter extends React.Component {
   };
 
   componentDidUpdate() {
-    if (this.state.result > 1000) {
+    if (this.state.result > 1000 && this.state.ratio === 2) {
       this.setState({
         ratio: 0.5,
       });
-    } else if (this.state.result < 1) {
+    } else if (this.state.result < 1 && this.state.ratio === 0.5) {
       this.setState({
         ratio: 2,
       });
